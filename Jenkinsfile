@@ -50,16 +50,16 @@ pipeline {
           echo "(Post always) currentBuild.Result: ${currentBuild.result}"
       }
       success {
-          echo "(Post success) Pipeline executed successfully!""
+          echo "(Post success) Pipeline executed successfully!"
       }
       unstable {
-          echo "(Post unstable) Pipeline is unstable :/""
+          echo "(Post unstable) Pipeline is unstable :/"
       }
       failure {
-          echo "(Post failure) Pipeline Failed!!!""
+          echo "(Post failure) Pipeline Failed!!!"
       }
       changed {
-          echo "(Post failure) Something changed...""
+          echo "(Post failure) Something changed..."
       }
     }
 }
