@@ -47,6 +47,8 @@ pipeline {
       always {
         script {
           echo "Post section: run always"
+          echo "currentBuild.currentResult: ${currentBuild.currentResult}"
+          echo "currentBuild.Result: ${currentBuild.result}"
         }
       }
       failure {
