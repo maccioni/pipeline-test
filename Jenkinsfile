@@ -15,15 +15,15 @@ pipeline {
             }
         }
         stage('Simulate change in Sandbox') {
-//            when {
-//                expression { ${currentBuild.currentResult} == SUCESS }
-//            }
             steps {
                 sh "echo 'Placeholder for policy simulation on Forward Sandbox'"
                 echo "currentBuild.currentResult: ${currentBuild.currentResult}"
             }
         }
         stage('Apply network change') {
+            when {
+                expression { ${currentBuild.currentResult} == 'SUCESS' }
+            }
             steps {
                 sh "echo 'Placeholder for Apply network change'"
                 echo "currentBuild.currentResult: ${currentBuild.currentResult}"
