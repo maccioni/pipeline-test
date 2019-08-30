@@ -47,8 +47,8 @@ pipeline {
       }
       failure {
         script {
-          currentBuild.result = "FAILURE"
           echo "Post section: run on failure only"
+          currentBuild.result = "FAILURE"
         }
       }
     }
