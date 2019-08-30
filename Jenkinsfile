@@ -46,20 +46,20 @@ pipeline {
     post {
       always {
           echo "Post section: run always"
-          echo "currentBuild.currentResult: ${currentBuild.currentResult}"
-          echo "currentBuild.Result: ${currentBuild.result}"
+          echo "(Post always) currentBuild.currentResult: ${currentBuild.currentResult}"
+          echo "(Post always) currentBuild.Result: ${currentBuild.result}"
       }
       success {
-          echo 'I succeeeded!'
+          echo "(Post success) Pipeline executed successfully!""
       }
       unstable {
-          echo 'I am unstable :/'
+          echo "(Post unstable) Pipeline is unstable :/""
       }
       failure {
-          echo "Post section: run on failure only"
+          echo "(Post failure) Pipeline Failed!!!""
       }
       changed {
-          echo 'Things were different before...'
+          echo "(Post failure) Something changed...""
       }
     }
 }
