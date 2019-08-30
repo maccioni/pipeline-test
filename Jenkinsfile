@@ -9,16 +9,15 @@ pipeline {
             }
         }
         stage('Pre-change validation') {
-
             steps {
                 sh "echo 'Placeholder for Pre-change validation'"
                 echo "currentBuild.currentResult: ${currentBuild.currentResult}"
             }
         }
         stage('Simulate change in Sandbox') {
-            when {
-                expression { ${currentBuild.currentResult} == SUCESS }
-            }
+//            when {
+//                expression { ${currentBuild.currentResult} == SUCESS }
+//            }
             steps {
                 sh "echo 'Placeholder for policy simulation on Forward Sandbox'"
                 echo "currentBuild.currentResult: ${currentBuild.currentResult}"
