@@ -10,7 +10,7 @@ pipeline {
         }
         stage('Pre-change validation') {
             when {
-                ${currentBuild.currentResult} == SUCESS
+                expression { ${currentBuild.currentResult} == SUCESS }
             }
             steps {
                 sh "echo 'Placeholder for Pre-change validation'"
