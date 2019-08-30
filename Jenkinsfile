@@ -5,11 +5,13 @@ pipeline {
         stage('Download code from GitHub') {
             steps {
                 echo "Downloading code from https://github.com/maccioni/forward-cicd-ansible"
-
+                echo "currentBuild.currentResult: ${currentBuild.currentResult}"
             }
-            currentBuild.result = "FAILURE"
         }
         stage('Pre-change validation') {
+            when {
+                ${currentBuild.currentResult} == SUCESS
+            }
             steps {
                 sh "echo 'Placeholder for Pre-change validation'"
                 echo "currentBuild.currentResult: ${currentBuild.currentResult}"
