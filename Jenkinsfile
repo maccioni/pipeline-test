@@ -5,8 +5,9 @@ pipeline {
         stage('Download code from GitHub') {
             steps {
                 echo "Downloading code from https://github.com/maccioni/forward-cicd-ansible"
-                currentBuild.result = "FAILURE"
+
             }
+            currentBuild.result = "FAILURE"
         }
         stage('Pre-change validation') {
             steps {
