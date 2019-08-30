@@ -21,9 +21,9 @@ pipeline {
             }
         }
         stage('Apply network change') {
-            when {
-                expression { ${currentBuild.currentResult} == 'SUCESS' }
-            }
+//            when {
+//                expression { ${currentBuild.currentResult} == 'SUCESS' }
+//            }
             steps {
                 sh "echo 'Placeholder for Apply network change'"
                 echo "currentBuild.currentResult: ${currentBuild.currentResult}"
@@ -45,17 +45,21 @@ pipeline {
     }
     post {
       always {
-        script {
           echo "Post section: run always"
           echo "currentBuild.currentResult: ${currentBuild.currentResult}"
           echo "currentBuild.Result: ${currentBuild.result}"
-        }
+      }
+      success {
+          echo 'I succeeeded!'
+      }
+      unstable {
+          echo 'I am unstable :/'
       }
       failure {
-        script {
           echo "Post section: run on failure only"
-          currentBuild.result = "FAILURE"
-        }
+      }
+      changed {
+          echo 'Things were different before...'
       }
     }
 }
