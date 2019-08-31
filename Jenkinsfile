@@ -17,7 +17,8 @@ pipeline {
                 sh 'ls -l'
                 sh 'env'
                 slackSend(channel: 'demo-notifications', message: 'test message from jenkins', username: 'fabriziomaccioni', token: 'GnbPV5e2SVkTkyMiRXaCFEXK', teamDomain: 'fwd-net')
-  }
+            }
+        }
         stage('Pre-change validation') {
             steps {
               script {
