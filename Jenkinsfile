@@ -6,12 +6,29 @@ pipeline {
             steps {
                 echo "Downloading code from https://github.com/maccioni/forward-cicd-ansible"
                 echo "currentBuild.currentResult: ${currentBuild.currentResult}"
+                slackSend(channel: 'demo-notifications', message: 'new test message from jenkins', username: 'fabriziomaccioni', token: 'GnbPV5e2SVkTkyMiRXaCFEXK', teamDomain: 'fwd-net')
             }
         }
+        stage('copied from test') {
+            steps {
+                echo 'Check enviroment '
+                sh 'whoami'
+                sh 'who am i'
+                sh 'ls -l'
+                sh 'env'
+                slackSend(channel: 'demo-notifications', message: 'test message from jenkins', username: 'fabriziomaccioni', token: 'GnbPV5e2SVkTkyMiRXaCFEXK', teamDomain: 'fwd-net')
+  }
         stage('Pre-change validation') {
             steps {
-                sh "echo 'Placeholder for Pre-change validation'"
-                echo "currentBuild.currentResult: ${currentBuild.currentResult}"
+              script {
+                if (env.BRANCH_NAME == 'master') {
+                  echo 'I only execute on the master branch'
+                  sh "echo 'Placeholder for Pre-change validation'"
+                  echo "currentBuild.currentResult: ${currentBuild.currentResult}"
+                } else {
+                    echo 'I execute elsewhere'
+                }
+              }
             }
         }
         stage('Simulate change in Sandbox') {
@@ -45,9 +62,10 @@ pipeline {
     }
     post {
       always {
-          echo "Post section: run always"
           echo "(Post always) currentBuild.currentResult: ${currentBuild.currentResult}"
           echo "(Post always) currentBuild.Result: ${currentBuild.result}"
+          slackSend(channel: 'demo-notifications', message: 'test message from jenkins', username: 'fabriziomaccioni', token: 'GnbPV5e2SVkTkyMiRXaCFEXK', teamDomain: 'fwd-net')
+//          color: 'good',
       }
       success {
           echo "(Post success) Pipeline executed successfully!"
