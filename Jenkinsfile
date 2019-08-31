@@ -63,7 +63,7 @@ pipeline {
       always {
           echo "(Post always) currentBuild.currentResult: ${currentBuild.currentResult}"
           echo "(Post always) currentBuild.Result: ${currentBuild.result}"
-          slackSend(channel: 'demo-notifications', message: 'test message from jenkins', username: 'fabriziomaccioni', token: ${env.SLACK_TOKEN}, teamDomain: 'fwd-net')
+          slackSend(channel: 'demo-notifications', message: 'test message from jenkins', username: 'fabriziomaccioni', token: "${env.SLACK_TOKEN}", teamDomain: 'fwd-net')
 //          color: 'good',
       }
       success {
