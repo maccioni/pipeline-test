@@ -6,7 +6,6 @@ pipeline {
             steps {
                 echo "Downloading code from https://github.com/maccioni/forward-cicd-ansible"
                 echo "currentBuild.currentResult: ${currentBuild.currentResult}"
-                slackSend(channel: 'demo-notifications', message: 'new test message from jenkins', username: 'fabriziomaccioni', token: 'GnbPV5e2SVkTkyMiRXaCFEXK', teamDomain: 'fwd-net')
             }
         }
         stage('copied from test') {
@@ -16,7 +15,6 @@ pipeline {
                 sh 'who am i'
                 sh 'ls -l'
                 sh 'env'
-                slackSend(channel: 'demo-notifications', message: 'test message from jenkins', username: 'fabriziomaccioni', token: 'GnbPV5e2SVkTkyMiRXaCFEXK', teamDomain: 'fwd-net')
             }
         }
         stage('Pre-change validation') {
@@ -65,7 +63,7 @@ pipeline {
       always {
           echo "(Post always) currentBuild.currentResult: ${currentBuild.currentResult}"
           echo "(Post always) currentBuild.Result: ${currentBuild.result}"
-          slackSend(channel: 'demo-notifications', message: 'test message from jenkins', username: 'fabriziomaccioni', token: 'GnbPV5e2SVkTkyMiRXaCFEXK', teamDomain: 'fwd-net')
+          slackSend(channel: 'demo-notifications', message: 'test message from jenkins', username: 'fabriziomaccioni', token: ${env.SLACK_TOKEN}, teamDomain: 'fwd-net')
 //          color: 'good',
       }
       success {
