@@ -65,7 +65,8 @@ pipeline {
           echo "(Post always) currentBuild.Result: ${currentBuild.result}"
           slackSend(channel: 'demo-notifications', message: 'test message from jenkins using variable', username: 'fabriziomaccioni', token: "${env.SLACK_TOKEN}", teamDomain: 'fwd-net')
 //          slackSend(channel: 'demo-notifications', message: 'Finished: Job ${env.JOB_NAME} [${env.BUILD_NUMBER}] at  with State: ${STATE} "${env.SLACK_TOKEN}".', username: 'fabriziomaccioni', token: "${env.SLACK_TOKEN}", teamDomain: 'fwd-net')
-          slackSend(channel: 'demo-notifications', message: "Finished: Job ${env.JOB_NAME} [${env.BUILD_NUMBER}] at  with State: ${STATE} '${env.SLACK_TOKEN}'.", username: 'fabriziomaccioni', token: "${env.SLACK_TOKEN}", teamDomain: 'fwd-net')
+//          slackSend(channel: 'demo-notifications', message: "Finished: Job ${env.JOB_NAME} [${env.BUILD_NUMBER}] at  with State: ${STATE} '${env.SLACK_TOKEN}'.", username: 'fabriziomaccioni', token: "${env.SLACK_TOKEN}", teamDomain: 'fwd-net')
+          slackSend (message: "FAILED: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]' (${env.BUILD_URL})", username: 'fabriziomaccioni', token: "${env.SLACK_TOKEN}", teamDomain: 'fwd-net', channel: 'demo-notifications', color: '#FF0000')
       }
       success {
           echo "(Post success) Pipeline executed successfully!"
